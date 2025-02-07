@@ -12,7 +12,6 @@ RUN apk --no-cache add git
 COPY package.json pnpm-lock.yaml *.ts ./
 COPY services services
 COPY models models
-COPY db db
 COPY public public
 
 # Install pnpm and dependencies
