@@ -15,66 +15,64 @@ type ServiceMethods = {};
 type ServiceThis = Service<ServiceSettings> & ServiceMethods;
 
 const memberService: ServiceSchema<ServiceSettings, ServiceThis> = {
-	name: "member",
+    name: "member",
 
-	/**
-	 * Settings
-	 */
-	settings: {
-		defaultName: "Moleculer",
-	},
+    /**
+     * Settings
+     */
+    settings: {
+        defaultName: "Moleculer",
+    },
 
-	/**
-	 * Dependencies
-	 */
-	dependencies: [],
+    /**
+     * Dependencies
+     */
+    dependencies: [],
 
-	/**
-	 * Mixins
-	 */
-	mixins: [DbService],
+    /**
+     * Mixins
+     */
+    mixins: [DbService],
 
-	model: MemberModel,
+    model: MemberModel,
 
-	adapter: new MongooseAdapter(
-		process.env.MONGO_URI_CLOUD || "mongodb://localhost/moleculer"
-	),
+    adapter: new MongooseAdapter(process.env.MONGO_URI_CLOUD || "mongodb://localhost/moleculer"),
 
-	/**
-	 * Actions
-	 */
-	actions: {},
+    /**
+     * Actions
+     */
+    actions: {},
 
-	/**
-	 * Events
-	 */
-	events: {},
+    /**
+     * Events
+     */
+    events: {},
 
-	/**
-	 * Methods
-	 */
-	methods: {},
+    /**
+     * Methods
+     */
+    methods: {},
 
-	/**
-	 * Service created lifecycle event handler
-	 */
-	created() {
-		this.logger.info(`The ${this.name} service created.`);
-	},
+    /**
+     * Service created lifecycle event handler
+     */
+    created() {
+        this.logger.info(`The ${this.name} service created.`);
+    },
 
-	/**
-	 * Service started lifecycle event handler
-	 */
-	async started() {
-		this.logger.info(`The ${this.name} service started.`);
-	},
+    /**
+     * Service started lifecycle event handler
+     */
+    async started() {
+        this.logger.info(`The ${this.name} service started.`);
+    },
 
-	/**
-	 * Service stopped lifecycle event handler
-	 */
-	async stopped() {
-		this.logger.info(`The ${this.name} service stopped.`);
-	},
+    /**
+     * Service stopped lifecycle event handler
+     */
+    async stopped() {
+        this.logger.info(`The ${this.name} service stopped.`);
+    },
 };
 
 export default memberService;

@@ -2,10 +2,7 @@
   "name": "gdg-hack-2025-api-moleculer-typescript",
   "version": "0.3.0",
   "description": "My Moleculer-based microservices project",
-  "keywords": [
-    "microservices",
-    "moleculer"
-  ],
+  "keywords": ["microservices", "moleculer"],
   "author": "Bensalah Abdelhamid",
   "scripts": {
     "dev": "run-p -l dev:*",
