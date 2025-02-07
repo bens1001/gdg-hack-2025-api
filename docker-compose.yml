@@ -18,25 +18,61 @@ services:
     networks:
       - internal
 
-  greeter:
+  user:
     build:
       context: .
     image: moleculer-typescript
     env_file: docker-compose.env
     environment:
-      SERVICES: greeter
+      SERVICES: user
     depends_on:
       - nats
     networks:
       - internal
 
-  product:
+  skill:
     build:
       context: .
     image: moleculer-typescript
     env_file: docker-compose.env
     environment:
-      SERVICES: product
+      SERVICES: skill
+    depends_on:
+      - nats
+    networks:
+      - internal
+
+  question:
+    build:
+      context: .
+    image: moleculer-typescript
+    env_file: docker-compose.env
+    environment:
+      SERVICES: question
+    depends_on:
+      - nats
+    networks:
+      - internal
+
+  collaboration:
+    build:
+      context: .
+    image: moleculer-typescript
+    env_file: docker-compose.env
+    environment:
+      SERVICES: collaboration
+    depends_on:
+      - nats
+    networks:
+      - internal
+
+  discord-bot:
+    build:
+      context: .
+    image: moleculer-typescript
+    env_file: docker-compose.env
+    environment:
+      SERVICES: discord-bot
     depends_on:
       - nats
     networks:

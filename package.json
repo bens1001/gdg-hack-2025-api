@@ -2,7 +2,11 @@
   "name": "moleculer-typescript-template",
   "version": "0.3.0",
   "description": "My Moleculer-based microservices project",
-  "keywords": ["microservices", "moleculer", "moleculer typescript template"],
+  "keywords": [
+    "microservices",
+    "moleculer",
+    "moleculer typescript template"
+  ],
   "license": "MIT",
   "author": "Huynh Duc Dung",
   "scripts": {
@@ -25,6 +29,9 @@
     "dc:up": "docker compose up --build -d",
     "dc:logs": "docker compose logs -f",
     "dc:down": "docker compose down",
+    "wsl:dc:up": "wsl docker compose up --build -d",
+    "wsl:dc:logs": "wsl docker compose logs -f",
+    "wsl:dc:down": "wsl docker compose down",
     "generate:service": "hygen service new --name",
     "generate:crud": "hygen service crud --name",
     "generate:action": "hygen action new --name",
@@ -47,6 +54,7 @@
     "moleculer-db-adapter-mongoose": "^0.10.0",
     "moleculer-web": "0.10.7",
     "moleculer-zod-validator": "3.3.1",
+    "mongodb": "2.2.12",
     "mongoose": "6.5.4",
     "nats": "2.29.1",
     "openapi-types": "12.1.3",
