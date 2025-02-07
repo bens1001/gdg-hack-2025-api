@@ -15,9 +15,7 @@
     "/api/greeter/hello": {
       "get": {
         "description": "Returns the Hello Moleculer",
-        "tags": [
-          "greeter"
-        ],
+        "tags": ["greeter"],
         "responses": {
           "200": {
             "description": "Hello Moleculer",
@@ -36,9 +34,7 @@
     "/api/greeter/welcome": {
       "get": {
         "description": "Returns Welcome, a username",
-        "tags": [
-          "greeter"
-        ],
+        "tags": ["greeter"],
         "parameters": [
           {
             "$ref": "#/components/parameters/username",
