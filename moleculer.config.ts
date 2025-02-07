@@ -216,7 +216,7 @@ const config: BrokerOptions = {
     // Called after broker started.
     async started(broker) {
         broker.logger.warn("[%s] Broker started!", broker.namespace);
-		await connectDB();
+        await connectDB();
     },
 
     // Called after broker stopped.
