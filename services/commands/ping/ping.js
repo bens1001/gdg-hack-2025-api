@@ -22,7 +22,6 @@ module.exports = {
             .addField("Message Latency", `${end - start}ms`, true)
             .setColor("RANDOM");
 
-
         interaction.editReply({ embeds: [embed] }).catch((e) => interaction.followUp(e));
     },
 };

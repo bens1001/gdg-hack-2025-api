@@ -1,8 +1,8 @@
+import { create } from "lodash";
 import type { Context, Service, ServiceSchema } from "moleculer";
 import DbService from "moleculer-db";
 import MongooseAdapter from "moleculer-db-adapter-mongoose";
 import { QuestionModel } from "../models/question.schema";
-import { create } from "lodash";
 
 export type ActionHelloParams = {
     // name: string;
@@ -46,24 +46,26 @@ const questionService: ServiceSchema<ServiceSettings, ServiceThis> = {
      * Actions
      */
     actions: {
-		create: {
-			rest: "POST /",
-			params: {
-				discord_id: "string",
-				question_text: "string",
-				skill: "string",
-			},
-			async handler(ctx: Context<{ discord_id: string; question_text: string; skill: string }>) {
-				const { discord_id, question_text, skill } = ctx.params;
-				const question = await this.adapter.insert({
-					discord_id,
-					question_text,
-					skill,
-				});
-				return question;
-			},
-		},
-	},
+        create: {
+            rest: "POST /",
+            params: {
+                discord_id: "string",
+                question_text: "string",
+                skill: "string",
+            },
+            async handler(
+                ctx: Context<{ discord_id: string; question_text: string; skill: string }>,
+            ) {
+                const { discord_id, question_text, skill } = ctx.params;
+                const question = await this.adapter.insert({
+                    discord_id,
+                    question_text,
+                    skill,
+                });
+                return question;
+            },
+        },
+    },
 
     /**
      * Events
