@@ -2,10 +2,10 @@ import type { Context, Service, ServiceSchema } from "moleculer";
 import { Errors } from "moleculer";
 const { MoleculerError } = Errors;
 
+import { populate } from "dotenv";
 import DbService from "moleculer-db";
 import MongooseAdapter from "moleculer-db-adapter-mongoose";
 import { MemberModel } from "../models/member.schema";
-import { populate } from "dotenv";
 
 export type ActionHelloParams = {};
 
@@ -16,87 +16,85 @@ type ServiceMethods = {};
 type ServiceThis = Service<ServiceSettings> & ServiceMethods;
 
 const memberService: ServiceSchema<ServiceSettings, ServiceThis> = {
-	name: "member",
+    name: "member",
 
-	/**
-	 * Settings
-	 */
-	settings: {
-		defaultName: "Moleculer",
-	},
+    /**
+     * Settings
+     */
+    settings: {
+        defaultName: "Moleculer",
+    },
 
-	/**
-	 * Dependencies
-	 */
-	dependencies: [],
+    /**
+     * Dependencies
+     */
+    dependencies: [],
 
-	/**
-	 * Mixins
-	 */
-	mixins: [DbService],
+    /**
+     * Mixins
+     */
+    mixins: [DbService],
 
-	model: MemberModel,
+    model: MemberModel,
 
-	adapter: new MongooseAdapter(
-		process.env.MONGO_URI_CLOUD || "mongodb://localhost/moleculer"
-	),
+    adapter: new MongooseAdapter(process.env.MONGO_URI_CLOUD || "mongodb://localhost/moleculer"),
 
-	/**
-	 * Actions
-	 */
-	actions: {
-		getMemberByDiscordId: {
-			rest: "GET /:discord_id",
-			params: {
-				discord_id: "string",
-			},
-			async handler(ctx: Context<{ discord_id: string }>) {
-				const { discord_id } = ctx.params;
-				const member = await this.adapter.findOne({ discord_id });
-				if (!member) {
-					throw new MoleculerError("Member not found", 404);
-				}
-				return member;
-			},
-		},
-		create: {
-			rest: "POST /",
-			params: {
-				discord_id: "string",
-			},
-		},
-	},
+    /**
+     * Actions
+     */
+    actions: {
+        getMemberByDiscordId: {
+            rest: "GET /:discord_id",
+            params: {
+                discord_id: "string",
+            },
+            async handler(ctx: Context<{ discord_id: string }>) {
+                const { discord_id } = ctx.params;
+                const member = await this.adapter.findOne({ discord_id });
+                if (!member) {
+                    throw new MoleculerError("Member not found", 404);
+                }
+                return member;
+            },
+        },
+        create: {
+            rest: "POST /",
+            params: {
+                discord_id: "string",
+            },
+        },
+    },
 
-	/**
-	 * Events
-	 */
-	events: {},
+    /**
+     * Events
+     */
+    events: {},
 
-	/**
-	 * Methods
-	 */
-	methods: {},
+    /**
+     * Methods
+     */
+    methods: {},
 
-	/**
-	 * Service created lifecycle event handler
-	 */
-	created() {
-		this.logger.info(`The ${this.name} service created.`);
-	},
+    /**
+     * Service created lifecycle event handler
+     */
+    created() {
+        this.logger.info(`The ${this.name} service created.`);
+    },
 
-	/**
-	 * Service started lifecycle event handler
-	 */
-	async started() {
-		this.logger.info(`The ${this.name} service started.`);
-	},
+    /**
+     * Service started lifecycle event handler
+     */
+    async started() {
+        this.logger.info(`The ${this.name} service started.`);
+    },
 
-	/**
-	 * Service stopped lifecycle event handler
-	 */
-	async stopped() {
-		this.logger.info(`The ${this.name} service stopped.`);
-	},
+    /**
+     * Service stopped lifecycle event handler
+     */
+    async stopped() {
+        this.logger.info(`The ${this.name} service stopped.`);
+    },
 };
 
 export default memberService;

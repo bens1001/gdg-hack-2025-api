@@ -40,23 +40,23 @@ module.exports = {
                 ],
             });
 
-			try {
-				await broker.call("collaboration.create", {
-					question_id: questionId,
-					skill_level: skillLevel,
-					mentor_discord_id: interaction.user.id,
-					mentor_score_increase: skillLevel * 10,
-				});
-				await broker.call("question.update", {
-					id: questionId,
-					answered: true,
-				});
-			} catch (error) {
-				return await interaction.reply({
-					content: `Error: ${error.message}`,
-					ephemeral: true,
-				});
-			}
+            try {
+                await broker.call("collaboration.create", {
+                    question_id: questionId,
+                    skill_level: skillLevel,
+                    mentor_discord_id: interaction.user.id,
+                    mentor_score_increase: skillLevel * 10,
+                });
+                await broker.call("question.update", {
+                    id: questionId,
+                    answered: true,
+                });
+            } catch (error) {
+                return await interaction.reply({
+                    content: `Error: ${error.message}`,
+                    ephemeral: true,
+                });
+            }
 
             const embed = new discord.MessageEmbed()
                 .setTitle("Answer Received")
